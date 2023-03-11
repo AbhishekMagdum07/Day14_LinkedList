@@ -23,13 +23,25 @@ public class LinkedList {
         temp.next = newNode;   // adding node at end of the list.
     }
 
-    //Uc5 = Delete the first node of linked list.
-    public void deleteFirst() {
-        if(head == null){
-            System.out.println("Your Linked List is Empty");
+    //Uc6 = Delete the last element of linked list.
+    public void deleteLast() {
+        if(head == null){                       // checking linked list is empty or not.
+            System.out.println("LinkedList is empty");
             return;
         }
-        head = head.next;     // Deleting first node of Liked List by switching position of Head.
+        if (head.next == null) {               // if linked list have only one element then this condition will execute.
+            head = null;
+            return;
+        }
+
+        Node last = head.next;
+        Node secondLast = head;              // traverse till second last node to delete last node.
+
+        while (last.next != null){
+            last = last.next;
+            secondLast = secondLast.next;
+        }
+        secondLast.next = null;
     }
 
 
@@ -52,7 +64,7 @@ public class LinkedList {
         list.addLast(56);
         list.addLast(30);
         list.addLast(70);
-        list.deleteFirst();
+        list.deleteLast();
         list.print();
     }
 }
