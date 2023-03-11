@@ -1,54 +1,39 @@
 package com.bridgelabz.linkedlist;
-public class LinkedList {
-    Node head;
-    class Node {
-        Object data;
-        Node next;
-        Node(Object data) {
+
+public class  LinkedList<T extends Comparable<T>> {
+    Node<T> head;
+    class Node<T> {
+        T data;
+        Node<T> next;
+        Node(T data) {
             this.data = data;
             this.next = null;
         }
     }
-    //Uc3 = Create Linked list by using Append or AddLast method.
-    public void addLast(Object data) {
-        Node newNode = new Node(data); // create object of Node and pushing data.
-        if (head == null) {
-            head = newNode;     // if linkedList is empty then new node will be head.
-            return;
-        }
-        Node temp = head;
-        while (temp.next != null) {
-            temp = temp.next;  // traversing the temp till end of the list.
-        }
-        temp.next = newNode;   // adding node at end of the list.
-    }
+    // Uc10= Arrange all elements in ascending order using comparable method.
+    public void nodesInAscendingOrder(T data) {
+        Node<T> newNode = new Node<T>(data);
 
-    //Uc9 = search a number in linked list and delete it.
-    public void searchAndDelete(Object data) {
-        Node newNode = new Node(data);  //Entered Previous element to delete next.
-        Node temp = head;
-        while (temp.data != data) {
-            temp = temp.next;
+        if (head == null || data.compareTo(head.data) < 0) {
+            newNode.next = head;
+            head = newNode;
+        } else {
+            Node<T> temp = head;
+            while (temp.next != null && data.compareTo(temp.next.data) > 0) {
+                temp = temp.next;
+            }
+            newNode.next = temp.next;
+            temp.next = newNode;
         }
-        temp.next = temp.next.next;
-    }
-    public void size(){   // claculate size of linked list.
-        int size = 0;
-        Node temp = head;
-        while (temp != null) {
-            temp = temp.next;
-            size++;
-        }
-        System.out.println("Size ="+size);
     }
 
     // Display the methods.
-    public void print() {
+    public void printElements() {
         if (head == null) {
             System.out.println("Linked List is Empty.");
             return;
         }
-        Node temp = head;        // taking temp as a temporary variable to keep head as a constant.
+        Node<T> temp = head;        // taking temp as a temporary variable to keep head as a constant.
         while (temp != null) {
 
             System.out.print(temp.data + " => "); // It will print all the data in the list.
@@ -58,12 +43,11 @@ public class LinkedList {
     }
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-        list.addLast(56);
-        list.addLast(30);
-        list.addLast(40);
-        list.addLast(70);
-        list.searchAndDelete(30);
-        list.size();
-        list.print();
+
+        list.nodesInAscendingOrder(56);
+        list.nodesInAscendingOrder(30);
+        list.nodesInAscendingOrder(40);
+        list.nodesInAscendingOrder(70);
+        list.printElements();
     }
 }
