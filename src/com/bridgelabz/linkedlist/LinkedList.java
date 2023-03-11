@@ -23,27 +23,14 @@ public class LinkedList {
         temp.next = newNode;   // adding node at end of the list.
     }
 
-    //Uc6 = Delete the last element of linked list.
-    public void deleteLast() {
-        if(head == null){                       // checking linked list is empty or not.
-            System.out.println("LinkedList is empty");
-            return;
+    //Uc7 = Search linked list to find node with value 30
+    public void searchLinkedlist(Object data) {
+        Node temp = head;
+        while (temp.data != data) {  // travese till temp.data doent matches the input.
+            temp = temp.next;
         }
-        if (head.next == null) {               // if linked list have only one element then this condition will execute.
-            head = null;
-            return;
-        }
-
-        Node last = head.next;
-        Node secondLast = head;              // traverse till second last node to delete last node.
-
-        while (last.next != null){
-            last = last.next;
-            secondLast = secondLast.next;
-        }
-        secondLast.next = null;
+        System.out.println(temp.data);
     }
-
 
     // Display the methods.
     public void print() {
@@ -64,7 +51,7 @@ public class LinkedList {
         list.addLast(56);
         list.addLast(30);
         list.addLast(70);
-        list.deleteLast();
+        list.searchLinkedlist(30);
         list.print();
     }
 }
