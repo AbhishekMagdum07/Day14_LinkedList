@@ -23,16 +23,23 @@ public class LinkedList {
         temp.next = newNode;   // adding node at end of the list.
     }
 
-    //Uc8 = search 30 in linkedList and add 40 after it.
-    public void searchAndInsert(Object place, Object data) {
-        Node newNode = new Node(data);
+    //Uc9 = search a number in linked list and delete it.
+    public void searchAndDelete(Object data) {
+        Node newNode = new Node(data);  //Entered Previous element to delete next.
         Node temp = head;
-        while (temp.data != place) {  //search after which value you have to entered new node.
-            temp = temp.next;           //place = a value after you have to add new node
-        }                               //data = new vale.
-        newNode.next = temp.next;
-        temp.next = newNode;
-
+        while (temp.data != data) {
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+    }
+    public void size(){   // claculate size of linked list.
+        int size = 0;
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            size++;
+        }
+        System.out.println("Size ="+size);
     }
 
     // Display the methods.
@@ -53,8 +60,10 @@ public class LinkedList {
         LinkedList list = new LinkedList();
         list.addLast(56);
         list.addLast(30);
+        list.addLast(40);
         list.addLast(70);
-        list.searchAndInsert(30,40);
+        list.searchAndDelete(30);
+        list.size();
         list.print();
     }
 }
