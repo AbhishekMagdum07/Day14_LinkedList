@@ -9,15 +9,18 @@ public class LinkedList {
             this.next = null;
         }
     }
-    //Uc2 = Create Linked list by using add First method.
-    public void addFirst(int data){
-        Node newNode  = new Node(data);
-        if (head == null) {                // first checking head is null or not
-            head = newNode;                // if head is null then new node will be the head.
+    //Uc3 = Create Linked list by using Append or AddLast method.
+    public void addLast(Object data) {
+        Node newNode = new Node(data); // create object of Node and pushing data.
+        if (head == null) {
+            head = newNode;     // if linkedList is empty then new node will be head.
             return;
         }
-        newNode.next = head;
-        head = newNode;
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;  // traversing the temp till end of the list.
+        }
+        temp.next = newNode;   // adding node at end of the list.
     }
     // Display the methods.
     public void print() {
@@ -25,7 +28,7 @@ public class LinkedList {
             System.out.println("Linked List is Empty.");
             return;
         }
-        Node temp = head;               // taking temp as a temporary variable to keep head as a constant.
+        Node temp = head;        // taking temp as a temporary variable to keep head as a constant.
         while (temp != null) {
 
             System.out.print(temp.data + " => "); // It will print all the data in the list.
@@ -35,9 +38,9 @@ public class LinkedList {
     }
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-        list.addFirst(70);
-        list.addFirst(30);
-        list.addFirst(56);
+        list.addLast(56);
+        list.addLast(30);
+        list.addLast(70);
         list.print();
     }
 }
