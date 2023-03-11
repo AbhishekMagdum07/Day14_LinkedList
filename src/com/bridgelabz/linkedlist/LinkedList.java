@@ -9,27 +9,23 @@ public class LinkedList {
             this.next = null;
         }
     }
-
-    //Uc1 = Create simple Linded List.
-    public void simpleLinkedList(Object data) {
-        Node newNode = new Node(data); // create object of Node and pushing data.
-        if (head == null) {
-            head = newNode;     // if linkedList is empty then new node will be head.
+    //Uc2 = Create Linked list by using add First method.
+    public void addFirst(int data){
+        Node newNode  = new Node(data);
+        if (head == null) {                // first checking head is null or not
+            head = newNode;                // if head is null then new node will be the head.
             return;
         }
-        Node temp = head;
-        while (temp.next != null) {
-            temp = temp.next;  // traversing the temp till end of the list.
-        }
-        temp.next = newNode;
+        newNode.next = head;
+        head = newNode;
     }
-
+    // Display the methods.
     public void print() {
         if (head == null) {
             System.out.println("Linked List is Empty.");
             return;
         }
-        Node temp = head;        // taking temp as a temporary variable to keep head as a constant.
+        Node temp = head;               // taking temp as a temporary variable to keep head as a constant.
         while (temp != null) {
 
             System.out.print(temp.data + " => "); // It will print all the data in the list.
@@ -37,12 +33,11 @@ public class LinkedList {
         }
         System.out.println("Null");
     }
-
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-        list.simpleLinkedList(56);
-        list.simpleLinkedList(30);
-        list.simpleLinkedList(70);
+        list.addFirst(56);
+        list.addFirst(30);
+        list.addFirst(70);
         list.print();
     }
 }
